@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For My Baby ❤️</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=music-control">
 </head>
 <body class="slide-shell">
     <iframe class="slide-frame" name="slides" src="home.html" title="Our slides"></iframe>
@@ -30,6 +30,10 @@
 
         musicToggle.addEventListener("click", async () => {
             if (audioPlayer.paused) {
+                if (audioPlayer.ended || audioPlayer.currentTime >= audioPlayer.duration) {
+                    audioPlayer.currentTime = 0;
+                }
+
                 try {
                     await audioPlayer.play();
                 } catch {
