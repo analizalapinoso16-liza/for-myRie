@@ -6,23 +6,49 @@
     <title>For My Baby ❤️</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <div class="hearts" aria-hidden="true">
-        <span>❤️</span><span>💗</span><span>💕</span><span>💖</span>
-        <span>💗</span><span>❤️</span><span>💕</span><span>💞</span>
+<body class="slide-shell">
+    <iframe class="slide-frame" name="slides" src="home.html" title="Our slides"></iframe>
+    <div class="music-player">
+        <button class="music-toggle" id="music-toggle" type="button" aria-label="Play music" aria-pressed="false">
+            <span class="music-toggle-icon" aria-hidden="true">▶</span>
+            <span class="music-toggle-label">Play Audio</span>
+        </button>
+        <audio id="background-audio" src="background-music.mp3" preload="auto"></audio>
     </div>
+    <script>
+        const audioPlayer = document.getElementById("background-audio");
+        const musicToggle = document.getElementById("music-toggle");
+        const musicToggleIcon = musicToggle.querySelector(".music-toggle-icon");
+        const musicToggleLabel = musicToggle.querySelector(".music-toggle-label");
 
-    <main class="hero">
-        <p class="small-text">OCTOBER 1, 2026</p>
-        <h1>For My Baby ❤️</h1>
-        <p class="subtitle">A little reminder of how much I love you.</p>
+        function updateMusicButton(isPlaying) {
+            musicToggleIcon.textContent = isPlaying ? "❚❚" : "▶";
+            musicToggleLabel.textContent = isPlaying ? "Pause Audio" : "Play Audio";
+            musicToggle.setAttribute("aria-label", isPlaying ? "Pause music" : "Play music");
+            musicToggle.setAttribute("aria-pressed", String(isPlaying));
+        }
 
-        <nav class="hero-actions" aria-label="Choose a page">
-            <a class="button-primary" href="letter.html">💌 Open My Letter</a>
-            <a class="button-secondary" href="memories.html">📸 Our Memories</a>
-        </nav>
+        musicToggle.addEventListener("click", async () => {
+            if (audioPlayer.paused) {
+                try {
+                    await audioPlayer.play();
+                } catch {
+                    updateMusicButton(false);
+                }
+            } else {
+                audioPlayer.pause();
+            }
+        });
 
-        <p class="home-note">Always you. Always us. 💗</p>
-    </main>
+        audioPlayer.addEventListener("playing", () => updateMusicButton(true));
+        audioPlayer.addEventListener("pause", () => updateMusicButton(false));
+        audioPlayer.addEventListener("ended", () => updateMusicButton(false));
+        audioPlayer.addEventListener("error", () => {
+            musicToggleIcon.textContent = "!";
+            musicToggleLabel.textContent = "Audio unavailable";
+            musicToggle.setAttribute("aria-label", "Audio unavailable");
+            musicToggle.setAttribute("aria-pressed", "false");
+        });
+    </script>
 </body>
 </html>
