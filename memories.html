@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Memories ❤️</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="hearts" aria-hidden="true">
+        <span>❤️</span><span>💗</span><span>💕</span><span>💖</span>
+        <span>💗</span><span>❤️</span><span>💕</span><span>💞</span>
+    </div>
+
+    <main class="memories">
+        <p class="small-text">OUR LITTLE WORLD</p>
+        <h1>Our Memories 📸</h1>
+        <p class="memory-text">Different places, different days, but still us. ❤️</p>
+
+        <div class="gallery">
+            <div class="photo">
+                <img src="f45a0f33-6721-474c-8d73-1665b9144b93.jpg" alt="Our memory">
+                <span class="photo-placeholder" aria-hidden="true" hidden>♡<small>A little piece of us</small></span>
+                <span>Us ❤️</span>
+            </div>
+            <div class="photo">
+                <img src="2babba98-69b6-4b0b-8e13-4343523f0bb8.jpg" alt="Our memory">
+                <span class="photo-placeholder" aria-hidden="true" hidden>♡<small>My favorite moment</small></span>
+                <span>My favorite person 💗</span>
+            </div>
+            <div class="photo">
+                <img src="f2f4e388-74cc-43ec-a702-1cacf27a7a13.jpg" alt="Our memory">
+                <span class="photo-placeholder" aria-hidden="true" hidden>♡<small>My happy place</small></span>
+                <span>My happy place 🥹</span>
+            </div>
+            <div class="photo">
+                <img src="6d114da7-c4dc-4622-9747-cdec7e1051fc.jpg" alt="Our memory">
+                <span class="photo-placeholder" aria-hidden="true" hidden>♡<small>Always us</small></span>
+                <span>Always us 💕</span>
+            </div>
+        </div>
+
+        <nav class="page-links" aria-label="More pages">
+            <a class="button-primary" href="letter.html">💌 Read my letter</a>
+            <a class="button-secondary" href="distance.html">💗 A little love note</a>
+            <a class="button-secondary" href="index.html">⌂ Home</a>
+        </nav>
+    </main>
+
+    <script>
+        document.querySelectorAll(".photo img").forEach((image) => {
+            image.addEventListener("error", () => {
+                image.hidden = true;
+                image.nextElementSibling.hidden = false;
+            });
+        });
+    </script>
+</body>
+</html>
